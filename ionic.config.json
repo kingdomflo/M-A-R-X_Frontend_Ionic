@@ -1,0 +1,7 @@
+{
+  "name": "marx-app",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
