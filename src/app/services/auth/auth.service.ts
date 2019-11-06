@@ -78,12 +78,9 @@ export class AuthService {
     // Authorize login request with Auth0: open login page and get auth results
     this.Client.authorize(options, (err, authResult) => {
       if (err) {
+        this.baseService.activeLoaderPush(false);
         throw err;
       }
-
-      // this.presentAlert('ok');
-
-
       // Set access token
       this.accessToken = authResult.accessToken;
 
@@ -110,7 +107,6 @@ export class AuthService {
 
         this.baseService.login(dataToLogin).subscribe(data => {
           console.log('its good', data);
-          this.presentAlert(JSON.stringify(data));
           localStorage.setItem('api_token', data.apiToken);
           this.baseService.activeLoaderPush(false);
           this.router.navigate(['/tabs']);
@@ -123,17 +119,6 @@ export class AuthService {
 
       });
     });
-  }
-
-  async presentAlert(data) {
-    const alert = await this.alertController.create({
-      header: 'Alert',
-      subHeader: 'Subtitle',
-      message: data,
-      buttons: ['OK']
-    });
-
-    await alert.present();
   }
 
   public handleAuthentication() {

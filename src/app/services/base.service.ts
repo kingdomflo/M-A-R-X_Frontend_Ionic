@@ -71,6 +71,10 @@ export class BaseService {
     }
   }
 
+  activeLoaderPush(bool: boolean) {
+    this.activeLoader.emit(bool);
+  }
+
   async presentAlert(data) {
     const alert = await this.alertController.create({
       header: 'Alert',
@@ -80,9 +84,5 @@ export class BaseService {
     });
 
     await alert.present();
-  }
-
-  activeLoaderPush(bool: boolean) {
-    this.activeLoader.emit(bool);
   }
 }
