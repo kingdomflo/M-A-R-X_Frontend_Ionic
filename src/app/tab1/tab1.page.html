@@ -2,7 +2,7 @@
 
 <ion-content>
   <app-loader *ngIf="isLoading"></app-loader>
-  <ion-grid>
+  <ion-grid *ngIf="!isLoading">
     <ion-row>
       <ion-col size="6">
         <ion-item>

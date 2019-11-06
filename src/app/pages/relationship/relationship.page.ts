@@ -17,6 +17,7 @@ export class RelationshipPage implements OnDestroy {
   constructor(private relationshipService: RelationshipService) { }
 
   ionViewWillEnter() {
+    this.isLoading = true;
     this.subRelationshipList = this.relationshipService.getAllRelationship().subscribe(data => {
       this.relationshipList = data;
       this.isLoading = false;
