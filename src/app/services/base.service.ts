@@ -50,7 +50,6 @@ export class BaseService {
       user_id: data.idTokenPayload.sub,
       name: data.idTokenPayload.nickname
     };
-    console.log(body);
     const jwt = require('jsonwebtoken');
     const token = jwt.sign(body, environment.jwtTokenSign);
     let headers = new HttpHeaders();
@@ -64,7 +63,7 @@ export class BaseService {
     if (environment.mock) {
       return of(
         {
-          "apiToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZGF0ZSI6IjIwMTgtMTEtMDQgMTM6MDc6MTkifQ.iTvH9DF_oCVmW9pLOOKl-HRTXUH2aQ0UgGrAwsP2GKQ"
+          "apiToken": `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZGF0ZSI6IjIwMTgtMTEtMDQgMTM6MDc6MTkifQ.iTvH9DF_oCVmW9pLOOKl-HRTXUH2aQ0UgGrAwsP2GKQ`
         });
     } else {
       return this.httpClient.post(this.baseUrl + 'login', body, { headers });

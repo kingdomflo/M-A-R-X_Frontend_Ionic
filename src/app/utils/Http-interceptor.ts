@@ -32,17 +32,6 @@ export class RequestInterceptor implements HttpInterceptor {
     await alert.present();
   }
 
-  async presentAlert(data) {
-    const alert = await this.alertCtrl.create({
-      header: 'Alert',
-      subHeader: 'Subtitle',
-      message: data,
-      buttons: ['OK']
-    });
-
-    await alert.present();
-  }
-
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
@@ -51,11 +40,6 @@ export class RequestInterceptor implements HttpInterceptor {
       (event: HttpEvent<any>) => { },
       (err: any) => {
         if (err instanceof HttpErrorResponse) {
-          console.log('ERROR');
-
-          this.presentAlert('error');
-          this.presentAlert(JSON.stringify(err));
-
           let arrayMessage;
           let message = '';
           if (err.status !== 0) {
