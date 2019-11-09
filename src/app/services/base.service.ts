@@ -74,4 +74,5 @@ export class BaseService {
   activeLoaderPush(bool: boolean) {
     this.activeLoader.emit(bool);
   }
+
 }

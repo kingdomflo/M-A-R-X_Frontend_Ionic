@@ -37,6 +37,7 @@ export class NewRelationshipPage {
   }
 
   initRelationshipTypeList() {
+    this.isListLoading = true;
     this.relationshipService.getAllRelationshipType().subscribe(data => {
       this.relationshipTypeList = data;
       if (this.relationshipTypeList.length > 0) {
@@ -44,6 +45,7 @@ export class NewRelationshipPage {
       } else {
         this.haveRelationshipType = false;
       }
+      this.isListLoading = false;
     });
   }
 

@@ -52,6 +52,7 @@ export class PaymentDetailPage implements OnInit {
   }
 
   refunded() {
+    this.isLoading = true;
     this.paymentService.refunded(this.payment.id).subscribe((data: any) => {
       this.init();
     });
@@ -59,6 +60,7 @@ export class PaymentDetailPage implements OnInit {
 
   addReminderDate() {
     console.log(this.reminderDateForm.value);
+    this.isLoading = true;
     const jsonToSend = {
       date: this.reminderDateForm.value.date,
       payment: { id: this.id }

@@ -22,6 +22,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     console.log(this.platform.platforms());
+
     this.baseService.activeLoader.subscribe(data => {
       console.log('loader', data);
       this.isLoading = data;
@@ -39,6 +40,7 @@ export class LoginPage implements OnInit {
   }
 
   login() {
+    this.isLoading = true;
     if (this.platform.is('android') || this.platform.is('ios')) {
       this.authService.loginWithMobile();
     } else {

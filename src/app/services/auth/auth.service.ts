@@ -71,9 +71,10 @@ export class AuthService {
     // Authorize login request with Auth0: open login page and get auth results
     this.Client.authorize(options, (err, authResult) => {
       if (err) {
+        this.baseService.activeLoaderPush(false);
         throw err;
       }
-
+      
       // Set access token
       this.accessToken = authResult.accessToken;
 
@@ -97,7 +98,6 @@ export class AuthService {
 
         this.baseService.login(dataToLogin).subscribe(data => {
           console.log('its good', data);
-          this.presentAlert(JSON.stringify(data));
           localStorage.setItem('api_token', data.apiToken);
           this.baseService.activeLoaderPush(false);
           this.router.navigate(['/tabs']);

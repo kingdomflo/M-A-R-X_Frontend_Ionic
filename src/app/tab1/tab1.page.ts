@@ -75,15 +75,4 @@ export class Tab1Page {
     this.loadPayment();
   }
 
-  async presentAlert(data) {
-    const alert = await this.alertController.create({
-      header: 'Alert',
-      subHeader: 'Subtitle',
-      message: data,
-      buttons: ['OK']
-    });
-
-    await alert.present();
-  }
-
 }
