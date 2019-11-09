@@ -64,13 +64,6 @@ export class AuthService {
 
   public loginWithMobile() {
 
-    // const options = {
-    //   scope: 'openid profile offline_access'
-    // };
-    // this.Client.authorize(options, (err, authResult) => {
-    //   this.handleAuthentication();
-    // });
-
     const options = {
       scope: 'openid profile offline_access'
     };
@@ -81,13 +74,9 @@ export class AuthService {
         throw err;
       }
 
-      // this.presentAlert('ok');
-
-
       // Set access token
       this.accessToken = authResult.accessToken;
 
-      // Set access token expiration
       // Fetch user's profile info
       this.Auth0.client.userInfo(this.accessToken, (err, profile) => {
         if (err) {
@@ -106,8 +95,6 @@ export class AuthService {
         };
         const dataToLogin = { idTokenPayload, idToken };
 
-        // this.presentAlert(JSON.stringify(dataToLogin));
-
         this.baseService.login(dataToLogin).subscribe(data => {
           console.log('its good', data);
           this.presentAlert(JSON.stringify(data));
@@ -125,17 +112,7 @@ export class AuthService {
     });
   }
 
-  async presentAlert(data) {
-    const alert = await this.alertController.create({
-      header: 'Alert',
-      subHeader: 'Subtitle',
-      message: data,
-      buttons: ['OK']
-    });
-
-    await alert.present();
-  }
-
+  // login with web mode
   public handleAuthentication() {
     console.log('test handleAuthentication');
     this.auth0.parseHash((err, authResult) => {
@@ -201,5 +178,16 @@ export class AuthService {
     // Access Token's expiry time
     const expiresAt = JSON.parse(localStorage.getItem('expires_at') || '{}');
     return new Date().getTime() < expiresAt;
+  }
+
+  async presentAlert(data) {
+    const alert = await this.alertController.create({
+      header: 'Alert',
+      subHeader: 'Subtitle',
+      message: data,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 }

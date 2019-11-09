@@ -9,11 +9,6 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import Auth0Cordova from '@auth0/cordova';
 import { AuthService } from './services/auth/auth.service';
 
-// import { sign } from 'jsonwebtoken';
-// import { sign } from 'jws';
-
-// declare var require: any;
-
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
@@ -67,5 +62,5 @@ export class AppComponent {
       }
     });
   }
-  
+
 }

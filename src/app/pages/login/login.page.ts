@@ -22,14 +22,11 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     console.log(this.platform.platforms());
-    // this.presentAlert(this.platform.platforms());
-
     this.baseService.activeLoader.subscribe(data => {
       console.log('loader', data);
       this.isLoading = data;
       this.verifyAccess();
     });
-    // this.authService.handleAuthentication();
     this.verifyAccess();
   }
 
@@ -47,17 +44,6 @@ export class LoginPage implements OnInit {
     } else {
       this.authService.login();
     }
-  }
-
-  async presentAlert(data) {
-    const alert = await this.alertController.create({
-      header: 'Alert',
-      subHeader: 'Subtitle',
-      message: data,
-      buttons: ['OK']
-    });
-
-    await alert.present();
   }
 
 }

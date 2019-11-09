@@ -51,10 +51,10 @@ export class BaseService {
       name: data.idTokenPayload.nickname
     };
     console.log(body);
-    // const jwt = require('jsonwebtoken');
-    // const token = jwt.sign(body, environment.jwtTokenSign);
+    const jwt = require('jsonwebtoken');
+    const token = jwt.sign(body, environment.jwtTokenSign);
     let headers = new HttpHeaders();
-    // headers = headers.set('it-this-my-auth', environment.jwtTokenSign);
+    headers = headers.set('it-this-my-auth', token);
     headers = headers.set('idToken', data.idToken);
     headers = headers.set(
       'Content-Type',
@@ -69,17 +69,6 @@ export class BaseService {
     } else {
       return this.httpClient.post(this.baseUrl + 'login', body, { headers });
     }
-  }
-
-  async presentAlert(data) {
-    const alert = await this.alertController.create({
-      header: 'Alert',
-      subHeader: 'Subtitle',
-      message: data,
-      buttons: ['OK']
-    });
-
-    await alert.present();
   }
 
   activeLoaderPush(bool: boolean) {
