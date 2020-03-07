@@ -14,7 +14,7 @@ export class TabsPage {
   ionViewDidEnter() {
     this.subscription = this.platform.backButton.subscribe(() => {
       const app = 'app';
-      navigator[app].exitApp();
+      // navigator[app].exitApp();
     });
   }
 

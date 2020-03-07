@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder } from '@angular/forms';
 import { RelationshipService } from 'src/app/services/relationship/relationship.service';
 import { Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-setting',
@@ -15,12 +16,14 @@ export class SettingPage implements OnInit {
   relationshipTypeList: UserRelationshipType[];
 
   isLoading = true;
+  subscription;
 
   constructor(
     private translate: TranslateService,
     private relationshipService: RelationshipService,
     private fb: FormBuilder,
-    public router: Router
+    public router: Router,
+    private platform: Platform
   ) {
     this.langForm = this.fb.group({
       lang: [this.translate.getDefaultLang()]
@@ -57,6 +60,17 @@ export class SettingPage implements OnInit {
   logout() {
     localStorage.removeItem('api_token');
     this.router.navigate(['/login']);
+  }
+
+  ionViewDidEnter() {
+    this.subscription = this.platform.backButton.subscribe(() => {
+      const app = 'app';
+      navigator[app].exitApp();
+    });
+  }
+
+  ionViewWillLeave() {
+    this.subscription.unsubscribe();
   }
 
 }

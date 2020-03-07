@@ -2,6 +2,7 @@ import { RelationshipService } from './../../services/relationship/relationship.
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { unsubscribeSubscription } from 'src/app/utils/UnsubscribeSubscription';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-relationship',
@@ -13,8 +14,12 @@ export class RelationshipPage implements OnDestroy {
   relationshipList = new Array<any>();
 
   subRelationshipList: Subscription;
+  subscription;
 
-  constructor(private relationshipService: RelationshipService) { }
+  constructor(
+    private relationshipService: RelationshipService,
+    private platform: Platform
+  ) { }
 
   ionViewWillEnter() {
     this.isLoading = true;
@@ -28,6 +33,17 @@ export class RelationshipPage implements OnDestroy {
 
   ngOnDestroy() {
     unsubscribeSubscription([this.subRelationshipList]);
+  }
+
+  ionViewDidEnter() {
+    this.subscription = this.platform.backButton.subscribe(() => {
+      const app = 'app';
+      navigator[app].exitApp();
+    });
+  }
+
+  ionViewWillLeave() {
+    this.subscription.unsubscribe();
   }
 
 }

@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder } from '@angular/forms';
 import { Payment } from '../models/Payment';
 import { AuthService } from '../services/auth/auth.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -25,12 +25,14 @@ export class Tab1Page {
   relationshipId = null;
   type = null;
 
+  subscription;
+
   constructor(
     public translate: TranslateService,
     private fb: FormBuilder,
     private paymentService: PaymentService,
-    private authService: AuthService,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private platform: Platform
   ) {
     this.langForm = this.fb.group({
       lang: [this.translate.getDefaultLang()]
@@ -73,6 +75,17 @@ export class Tab1Page {
     // this.refunded = !this.refunded;
     console.log(this.refunded);
     this.loadPayment();
+  }
+
+  ionViewDidEnter() {
+    this.subscription = this.platform.backButton.subscribe(() => {
+      const app = 'app';
+      navigator[app].exitApp();
+    });
+  }
+
+  ionViewWillLeave() {
+    this.subscription.unsubscribe();
   }
 
 }
