@@ -49,7 +49,7 @@ export class HomePage {
       this.paymentList = data;
     }, error => {
     }, () => {
-      // this.isLoading = false;
+      this.isLoading = false;
     });
   }
 
