@@ -1,18 +1,17 @@
 import { Subscription } from 'rxjs';
-import { PaymentService } from './../services/payment/payment.service';
+import { PaymentService } from '../../services/payment/payment.service';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder } from '@angular/forms';
-import { Payment } from '../models/Payment';
-import { AuthService } from '../services/auth/auth.service';
+import { Payment } from '../../models/Payment';
 import { AlertController, Platform } from '@ionic/angular';
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss']
 })
-export class Tab1Page {
+export class HomePage {
   langForm;
 
   isLoading = true;

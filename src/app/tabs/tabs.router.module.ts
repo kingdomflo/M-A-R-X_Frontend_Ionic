@@ -17,7 +17,7 @@ const routes: Routes = [
         path: 'payment', children: [
           {
             path: '',
-            loadChildren: '../tab1/tab1.module#Tab1PageModule'
+            loadChildren: '../pages/home/home.module#HomePageModule'
           },
           {
             path: 'payment-detail/:id/:old-route',
