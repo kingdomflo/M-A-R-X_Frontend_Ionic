@@ -2,7 +2,7 @@
 </app-header>
 
 <ion-content>
-  <app-loader *ngIf="isListLoading"></app-loader>
+  <app-loader [show]="isListLoading"></app-loader>
   <form *ngIf="haveRelationshipType && !isListLoading" [formGroup]="relationshipForm">
     <ion-grid>
       <ion-row>

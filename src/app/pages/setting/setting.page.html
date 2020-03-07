@@ -16,7 +16,7 @@
     </ion-item>
   </form>
 
-  <app-loader *ngIf="isLoading"></app-loader>
+  <app-loader [show]="isLoading"></app-loader>
 
   <div *ngIf="!isLoading">
     <ion-item>
