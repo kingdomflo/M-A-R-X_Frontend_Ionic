@@ -12,6 +12,8 @@ import { Platform, AlertController } from '@ionic/angular';
 export class LoginPage implements OnInit {
   isLoading = false;
 
+  subscription;
+
   constructor(
     private authService: AuthService,
     private baseService: BaseService,
@@ -46,6 +48,17 @@ export class LoginPage implements OnInit {
     } else {
       this.authService.login();
     }
+  }
+
+  ionViewDidEnter() {
+    this.subscription = this.platform.backButton.subscribe(() => {
+      const app = 'app';
+      navigator[app].exitApp();
+    });
+  }
+
+  ionViewWillLeave() {
+    this.subscription.unsubscribe();
   }
 
 }
