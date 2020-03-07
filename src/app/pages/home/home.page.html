@@ -2,7 +2,7 @@
 
 <ion-content>
   <app-loader *ngIf="isLoading"></app-loader>
-  <ion-grid *ngIf="!isLoading">
+  <ion-grid>
     <ion-row>
       <ion-col size="6">
         <ion-item>
@@ -25,7 +25,7 @@
     </ion-row>
   </ion-grid>
 
-  <app-payment-list [paymentList]="paymentList" previousPage="/tabs/payment" *ngIf="!isLoading"></app-payment-list>
+  <app-payment-list *ngIf="!isLoading" [paymentList]="paymentList" previousPage="/tabs/payment"></app-payment-list>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="secondary" routerLink="new-payment">
       <ion-icon name="add"></ion-icon>

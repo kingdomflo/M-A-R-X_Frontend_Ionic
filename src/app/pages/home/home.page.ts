@@ -45,10 +45,10 @@ export class HomePage {
   loadPayment() {
     this.isLoading = true;
     this.paymentService.getAllPayment(this.refunded, this.numberRow, this.relationshipId, this.type).subscribe(data => {
-      console.log(data);
+      console.log('payment list', data);
       this.paymentList = data;
-      this.isLoading = false;
     }, error => {
+    }, () => {
       this.isLoading = false;
     });
   }
