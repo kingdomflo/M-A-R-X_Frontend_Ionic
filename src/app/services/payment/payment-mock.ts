@@ -12,7 +12,8 @@ export const MOCK_ONE_PAYMENT: Payment = {
     amount: 22.75,
     type: 'deb',
     refunded: false,
-    refundedDate: null
+    refundedDate: null,
+    reminderDate: null
 };
 
 export const MOCK_ALL_PAYMENT: Payment[] = [
@@ -27,7 +28,8 @@ export const MOCK_ALL_PAYMENT: Payment[] = [
         amount: 45.5,
         type: 'cre',
         refunded: true,
-        refundedDate: new Date()
+        refundedDate: new Date(),
+        reminderDate: null
     }
 ];
 

@@ -11,4 +11,5 @@ export class Payment {
     type: string; // deb or cre
     refunded: boolean;
     refundedDate: Date;
+    reminderDate: any;
 }
