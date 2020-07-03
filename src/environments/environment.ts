@@ -5,7 +5,7 @@ import { env } from '../../.env';
 
 export const environment = {
   production: false,
-  mock: false,
+  mock: true,
   apiUrl: env.apiUrlDev,
   jwtTokenSign: env.jwtTokenSign,
   clientID: env.clientID,
